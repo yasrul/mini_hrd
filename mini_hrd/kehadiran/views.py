@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
@@ -20,7 +20,7 @@ def daftar_hadir(request):
 	return render(request, 'daftar_hadir.html', {'daftar_hadir':daftar_hadir})
 	
 @login_required (login_url=settings.LOGIN_URL)
-def pengajuan_izin (request):
+def pengajuan_izin(request):
 	if request.method == 'POST':
 		form_data = request.POST
 		form = IzinForm(form_data)
@@ -38,7 +38,7 @@ def pengajuan_izin (request):
 	else:
 		form = IzinForm()
 		
-	return render (request, 'tambah_izin.html', {'form':form})
+	return render(request, 'tambah_izin.html', {'form':form})
 	
 @login_required (login_url=settings.LOGIN_URL)
 def daftar_izin(request):
